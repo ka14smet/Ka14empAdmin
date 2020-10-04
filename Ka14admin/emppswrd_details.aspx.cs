@@ -186,5 +186,10 @@ namespace Ka14admin
             txtlgnid.Text = string.Empty;
             txtpassword.Text = string.Empty;
         }
+
+        protected void btnbck_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Admin_login.aspx");
+        }
     }
 }

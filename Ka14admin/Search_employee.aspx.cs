@@ -77,6 +77,10 @@ namespace Ka14admin
                 objBLL = null;
             }
         }
-    
+
+        protected void btnbck_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Admin_login.aspx");
+        }
     }
 }

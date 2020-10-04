@@ -70,8 +70,8 @@
                         ErrorMessage="Field should not be empty" ForeColor="Red"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
-                    <td> </td>
-                    <td><asp:Button ID="btnsbmt" runat="server" Text="Submit" OnClick="btnsbmt_Click" /></td>
+                    <td><asp:Button ID="btnlgout" runat="server" Text="LogOut" CausesValidation="false" OnClick="btnlgout_Click" /> </td>
+                    <td><asp:Button ID="btnsbmt" runat="server" Text="LogIn" OnClick="btnsbmt_Click" /></td>
                 </tr>
                 <tr>
                     <td><asp:Label ID="lblcomment" runat="server" Visible="false"></asp:Label></td>

@@ -16,6 +16,7 @@
                 &nbsp;<asp:Button ID="btnsearch" runat="server" Text="Search" CausesValidation="false" OnClick="btnsearch_Click" />
             </legend>
              <table>
+                 <tr><td><asp:Button ID="btnbck" runat="server" Text="BACK" CausesValidation="false" OnClick="btnbck_Click" /></td></tr>
             <tr>
                 <td>Name</td>
                 <td><asp:TextBox ID="txtname" runat="server" ></asp:TextBox></td>

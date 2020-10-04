@@ -234,5 +234,11 @@ namespace Ka14admin
         {
             Response.Redirect("Search_employee.aspx");
         }
+
+        protected void btnbck_Click(object sender, EventArgs e)
+        {
+           
+            Response.Redirect("Admin_login.aspx");
+        }
     }
 }

@@ -17,6 +17,7 @@
                      Text="Search" Font-Bold="true" ForeColor="Blue"></asp:Label>
            </legend>
             <table>
+                <tr><td><asp:Button ID="btnbck" runat="server" CausesValidation="false" Text="BACK" OnClick="btnbck_Click" /></td></tr>
                 <tr><td> </td></tr>
                 <tr><td> </td></tr>
                 <tr><td><asp:TextBox ID="txtsearch" runat="server" ></asp:TextBox> &nbsp;

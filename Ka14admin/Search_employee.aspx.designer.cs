@@ -58,6 +58,15 @@ namespace Ka14admin {
         protected global::System.Web.UI.WebControls.Label lblsearch;
         
         /// <summary>
+        /// btnbck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnbck;
+        
+        /// <summary>
         /// txtsearch control.
         /// </summary>
         /// <remarks>

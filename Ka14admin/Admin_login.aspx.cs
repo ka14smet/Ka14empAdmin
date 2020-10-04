@@ -63,5 +63,10 @@ namespace Ka14admin
                 objBLL = null;
             }
         }
+
+        protected void btnlgout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("http://ka14.me/");
+        }
     }
 }
