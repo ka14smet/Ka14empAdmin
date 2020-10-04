@@ -46,11 +46,22 @@
             top: 114px;
             margin-top: 3px;
         }
+        .auto-style7 {
+            text-align: left;
+            position: absolute;
+            width: 662px;
+            height: 81px;
+            left: 10px;
+            top: 15px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        
+       
     <div style="padding: 300px;" class="auto-style1" >
+       <div class="auto-style7" > <asp:Button ID="btnhme" runat="server" Text="Home" CausesValidation="false" OnClick="btnhme_Click" /> </div> 
        <div class="auto-style6"> 
            <img src="WhatsApp Image 2020-08-30 at 11.59.05 AM (2).jpg" class="auto-style5" />&nbsp;</div>
         <fieldset class="auto-style3" >     
@@ -70,7 +81,7 @@
                         ErrorMessage="Field should not be empty" ForeColor="Red"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
-                    <td><asp:Button ID="btnlgout" runat="server" Text="LogOut" CausesValidation="false" OnClick="btnlgout_Click" /> </td>
+                    <td></td>
                     <td><asp:Button ID="btnsbmt" runat="server" Text="LogIn" OnClick="btnsbmt_Click" /></td>
                 </tr>
                 <tr>

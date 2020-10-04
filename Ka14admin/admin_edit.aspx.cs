@@ -10,19 +10,31 @@ using BLL;
 
 namespace Ka14admin
 {
+
     public partial class admin_edit : System.Web.UI.Page
     {
+
         personalBEL objBEL = new personalBEL();
         personalBLL objBLL = new personalBLL();
-            
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Session["id"] != null)
             {
-                Bindpersonaldata();
-            }
+                
+                if (!Page.IsPostBack)
+                {
+                    Bindpersonaldata();
+                }
 
+            }
+            else
+            {
+                Response.Redirect("Admin_login.aspx");
+            }
         }
+
+      
 
         private void Bindpersonaldata()
         {
@@ -62,70 +74,71 @@ namespace Ka14admin
 
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
-            objBEL.employfullname = txtname.Text.Trim();
-            objBEL.employdob = txtdob.Text.Trim();
-            objBEL.employgender = txtgender.Text.Trim();
-            objBEL.employbloodgrp = txtbldgrp.Text.Trim();
-            objBEL.employmobno1 = txtmob1.Text.Trim();
-            objBEL.employmobno2 = txtmob2.Text.Trim();
-            objBEL.employmailid = txtmailid.Text.Trim();
-            objBEL.employaddress = txtadrs.Text.Trim();
-            objBEL.employqualification = txtqal.Text.Trim();
-            objBEL.employdesignation = txtdesg.Text.Trim();
-
-            int retrval;
-
-            try
-            {
-                retrval = objBLL.insertdata(objBEL);
-                if (retrval != 0)
-                {
-                    lblcomment.Visible = true;
-                    lblcomment.Text = "inserted data succesfully";
-                    lblcomment.ForeColor = System.Drawing.Color.Green;
-                    Bindpersonaldata();
-                }
-                else
-                {
-                    lblcomment.Visible = true;
-                    lblcomment.Text = "inserted data was not  succesfull";
-                    lblcomment.ForeColor = System.Drawing.Color.Red;
-                }
-               
-            }
-            catch(Exception ex)
-            {
-                
-                Response.Write("ERROR"+ex.Message);
-
-            }
-            finally
-            {
-                objBEL = null;
-                objBLL = null;
-            }
             
+                objBEL.employfullname = txtname.Text.Trim();
+                objBEL.employdob = txtdob.Text.Trim();
+                objBEL.employgender = txtgender.Text.Trim();
+                objBEL.employbloodgrp = txtbldgrp.Text.Trim();
+                objBEL.employmobno1 = txtmob1.Text.Trim();
+                objBEL.employmobno2 = txtmob2.Text.Trim();
+                objBEL.employmailid = txtmailid.Text.Trim();
+                objBEL.employaddress = txtadrs.Text.Trim();
+                objBEL.employqualification = txtqal.Text.Trim();
+                objBEL.employdesignation = txtdesg.Text.Trim();
 
-        }
-        protected void grdprsnlview_RowEditing(object sender,GridViewEditEventArgs e)
+                int retrval;
+
+                try
+                {
+                    retrval = objBLL.insertdata(objBEL);
+                    if (retrval != 0)
+                    {
+                        lblcomment.Visible = true;
+                        lblcomment.Text = "inserted data succesfully";
+                        lblcomment.ForeColor = System.Drawing.Color.Green;
+                        Bindpersonaldata();
+                    }
+                    else
+                    {
+                        lblcomment.Visible = true;
+                        lblcomment.Text = "inserted data was not  succesfull";
+                        lblcomment.ForeColor = System.Drawing.Color.Red;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    Response.Write("ERROR" + ex.Message);
+
+                }
+                finally
+                {
+                    objBEL = null;
+                    objBLL = null;
+                }
+            }
+
+        
+        protected void grdprsnlview_RowEditing(object sender, GridViewEditEventArgs e)
         {
             grdprsnlview.EditIndex = e.NewEditIndex;
             Bindpersonaldata();
         }
-        protected void grdprsnlview_RowCancelingEdit(object sender,GridViewCancelEditEventArgs e)
+        protected void grdprsnlview_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             grdprsnlview.EditIndex = -1;
             Bindpersonaldata();
         }
-        protected void grdprsnlview_PageIndexChanging(object sender,GridViewPageEventArgs e)
+        protected void grdprsnlview_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grdprsnlview.PageIndex =e.NewPageIndex;
+            grdprsnlview.PageIndex = e.NewPageIndex;
             Bindpersonaldata();
         }
-        protected void grdprsnlview_RowDeleting(object sender,GridViewDeleteEventArgs e)
+        protected void grdprsnlview_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = grdprsnlview.DataKeys[e.RowIndex].Value.ToString();
-            objBEL.employid=id;
+            objBEL.employid = id;
 
             try
             {
@@ -158,21 +171,21 @@ namespace Ka14admin
             }
 
         }
-        protected void grdprsnlview_RowUpdating(object sender,GridViewUpdateEventArgs e)
+        protected void grdprsnlview_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             objBEL.employid = grdprsnlview.DataKeys[e.RowIndex].Value.ToString();
             objBEL.employfullname = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtnameEdit"))).Text.Trim();
-            objBEL.employdob= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtDOBEdit"))).Text.Trim();
-            objBEL.employgender= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtgenderEdit"))).Text.Trim();
-            objBEL.employbloodgrp=((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtbldgrpEdit"))).Text.Trim();
-            objBEL.employmobno1= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtmob1Edit"))).Text.Trim();
-            objBEL.employmobno2= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtmob2Edit"))).Text.Trim();
-            objBEL.employmailid= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtmailidEdit"))).Text.Trim();
-            objBEL.employaddress= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtadrEdit"))).Text.Trim();
-            objBEL.employqualification= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtqalEdit"))).Text.Trim();
-            objBEL.employdesignation= ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtdesgnEdit"))).Text.Trim();
+            objBEL.employdob = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtDOBEdit"))).Text.Trim();
+            objBEL.employgender = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtgenderEdit"))).Text.Trim();
+            objBEL.employbloodgrp = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtbldgrpEdit"))).Text.Trim();
+            objBEL.employmobno1 = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtmob1Edit"))).Text.Trim();
+            objBEL.employmobno2 = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtmob2Edit"))).Text.Trim();
+            objBEL.employmailid = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtmailidEdit"))).Text.Trim();
+            objBEL.employaddress = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtadrEdit"))).Text.Trim();
+            objBEL.employqualification = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtqalEdit"))).Text.Trim();
+            objBEL.employdesignation = ((TextBox)(grdprsnlview.Rows[e.RowIndex].FindControl("txtdesgnEdit"))).Text.Trim();
 
-           
+
             try
             {
                 int updtresult = objBLL.updatedata(objBEL);
@@ -193,9 +206,9 @@ namespace Ka14admin
                     lblcomment.ForeColor = System.Drawing.Color.Red;
 
                 }
-                   
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Response.Write(ex.Message);
             }
@@ -203,13 +216,13 @@ namespace Ka14admin
             {
                 objBEL = null;
                 objBLL = null;
-            } 
+            }
         }
         private void clearcontrols()
         {
             txtname.Text = string.Empty;
             txtdob.Text = string.Empty;
-            txtgender.Text= string.Empty;
+            txtgender.Text = string.Empty;
             txtbldgrp.Text = string.Empty;
             txtmob1.Text = string.Empty;
             txtmob2.Text = string.Empty;
@@ -222,23 +235,31 @@ namespace Ka14admin
 
         protected void btnwrkdt_Click(object sender, EventArgs e)
         {
+            //int i = 1;
+            //Session["id"] = i;
             Response.Redirect("wrk_details.aspx");
         }
 
         protected void btnemppswrd_Click(object sender, EventArgs e)
         {
+            //int i = 1;
+            //Session["id"] = i;
             Response.Redirect("emppswrd_details.aspx");
         }
 
         protected void btnsearch_Click(object sender, EventArgs e)
         {
+            //int i = 1;
+            //Session[i];
             Response.Redirect("Search_employee.aspx");
         }
 
         protected void btnbck_Click(object sender, EventArgs e)
         {
-           
+            Session.Clear();
             Response.Redirect("Admin_login.aspx");
         }
+
     }
+
 }

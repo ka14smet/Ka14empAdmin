@@ -16,7 +16,11 @@ namespace Ka14admin
         personalBLL objBLL = new personalBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["id"] ==null)
+            {
+                Response.Redirect("Admin_login.aspx");
+            }
+            
         }
 
         protected void btnprsnldt_Click(object sender, EventArgs e)
@@ -80,6 +84,7 @@ namespace Ka14admin
 
         protected void btnbck_Click(object sender, EventArgs e)
         {
+            Session.Clear();
             Response.Redirect("Admin_login.aspx");
         }
     }

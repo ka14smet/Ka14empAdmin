@@ -15,12 +15,21 @@ namespace Ka14admin
     {
         personalBEL objBEL = new personalBEL();
         personalBLL objBLL = new personalBLL();
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Session["id"] != null)
             {
-                bindworkdata();
+
+
+                if (!Page.IsPostBack)
+                {
+                    bindworkdata();
+                }
+            }
+            else
+            {
+                Response.Redirect("Admin_login.aspx");
             }
         }
         private void bindworkdata()
@@ -222,6 +231,7 @@ namespace Ka14admin
 
         protected void btnbck_Click(object sender, EventArgs e)
         {
+            Session.Clear();
             Response.Redirect("Admin_login.aspx");
         }
     }

@@ -50,7 +50,12 @@ namespace Ka14admin
                 else
                 {
                     lblcomment.Visible = false;
-                    Response.Redirect("admin_edit.aspx");
+                    Session["id"] = txtadmnid.Text.Trim();
+                    
+                    {
+                        Response.Redirect("admin_edit.aspx");
+                    }
+                   
                 }
             }
             catch(Exception ex)
@@ -64,7 +69,7 @@ namespace Ka14admin
             }
         }
 
-        protected void btnlgout_Click(object sender, EventArgs e)
+        protected void btnhme_Click(object sender, EventArgs e)
         {
             Response.Redirect("http://ka14.me/");
         }
